@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Login Page</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/login.css">
+
+</head>
+
+<body>
+	<div class="box-form">
+		<div class="left">
+			<div class="overlay">
+				<h1>Nico's Workshop.</h1>
+				<p>Dịch vụ sửa chữa và bảo hành xe hơi trực tuyến</p>
+				<span>
+					<p>Đăng nhập với tài khoản mạng xã hội</p>
+					<a href="index.html"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+					<a href="index.html"><i class="fa fa-twitter" aria-hidden="true"></i> Đăng nhập bằng Twitter</a>
+				</span>
+			</div>
+		</div>
+
+
+		<div class="login">
+			<form name='form-login'>
+		
+				<h1>Đăng Ký</h1>
+		
+				<label for="name">Email</label>
+				<input type="email" id="name" placeholder="Username" required>
+		
+				<label for="pw">Mật Khẩu</label>
+				<input type="password"
+					   id= "pw"
+					   placeholder="Password" required>
+		
+				<ul class="helper-text">
+					<li class="length">Phải dài ít nhất 8 kí tự.</li>
+					<li class="lowercase">Phải chứa ít nhất 1 chữ thường.</li>
+					<li class="uppercase">Phải chứa ít nhất 1 chữ in hoa.</li>
+					<li class="special">Phải chứa ít nhất 1 con số hoặc ký tự đặc biệt.</li>
+				</ul>
+				<input id="rgstr_btn" type="submit" value="Register" onclick="store()">
+		
+			</form>
+		</div>
+		
+		<div class="login">
+			<form name='form-login'>
+		
+				<h1>Đăng nhập</h1>
+		
+				<label for="userName">Email</label>
+				<input type="email" id="userName" placeholder="Username" required>
+		
+				<label for="userPw">Mật Khẩu</label>
+				<input type="password" id= "userPw" placeholder="Password" required>
+		
+				<div id="remember">
+					<input type="checkbox" value="lsRememberMe" id="rememberMe"
+						   style="display: inline-block;">
+					<label>Ghi nhớ mật khẩu</label>
+				</div>
+		
+				<input id= "login_btn" type="submit" value="Login" onclick="check()">
+		
+			</form>
+		</div>		
+</body>
+<script>
+	function store(){
+
+var name = document.getElementById('name');
+var pw = document.getElementById('pw');
+var lowerCaseLetters = /[a-z]/g;
+var upperCaseLetters = /[A-Z]/g;
+var numbers = /[0-9]/g;
+
+if(name.value.length == 0){
+	alert('Hãy điền email');
+
+}else if(pw.value.length == 0){
+	alert('Hãy điền mật khẩu');
+
+}else if(name.value.length == 0 && pw.value.length == 0){
+	alert('Hãy điền email và mật khẩu');
+
+}else if(pw.value.length > 8){
+	alert('Tối đa 8 kí tự');
+
+}else if(!pw.value.match(numbers)){
+	alert('Hãy thêm 1 số');
+
+}else if(!pw.value.match(upperCaseLetters)){
+	alert('Hãy thêm 1 chữ in hoa');
+
+}else if(!pw.value.match(lowerCaseLetters)){
+	alert('Hãy thêm 1 chữ 1 thường');
+
+}else{
+	localStorage.setItem('name', name.value);
+	localStorage.setItem('pw', pw.value);
+	alert('Tài khoản đã được tạo thành công');
+}
+}
+
+function check(){
+var storedName = localStorage.getItem('name');
+var storedPw = localStorage.getItem('pw');
+
+var userName = document.getElementById('userName');
+var userPw = document.getElementById('userPw');
+var userRemember = document.getElementById("rememberMe");
+
+if(userName.value == storedName && userPw.value == storedPw){
+	alert('Đăng nhập thành công.');
+}else{
+	alert('Đăng nhập thất bại. Xin hãy thử lại');
+}
+}
+</script>
+
+</html>
